@@ -60,6 +60,9 @@ var Rooms = {
                 'north': 'Sugary Pink',
                 'west': 'Brunch Nook',
                 'east': 'Eternal Darkness'
+            },
+            'items': {
+                'paint can': 'A can of black paint'
             }
         },
         'Eternal Darkness': {
