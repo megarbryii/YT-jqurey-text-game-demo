@@ -2,24 +2,7 @@ var currentRoom = "Grass Menagerie";
 var commands = ['go', 'inventory', 'start', 'take'];
 var inventory = [];
 
-function changeRoom(dir) {
-    if(Rooms[currentRoom].directions[dir] !== undefined) {
-        currentRoom = Rooms[currentRoom].directions[dir];
-        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>").fadeIn('slow');
-    } else {
-        $('#game-text').append("<p>You cannot go that way!</p>");
-    }
-}
-
-function addItem(item) {
-    if(Rooms[currentRoom].items !== undefined) {
-        inventory.push(item);
-        $('#game-text').append('<p>' + item + ' has been added to your inventory');
-    } else {
-        $('#game-text').append('<p>There is nothing to pick up!<p>');
-    }
-}
-
+//Commands
 function playerInput(input) {
     var command = input.split(' ')[0];
     switch (command) {
@@ -40,18 +23,34 @@ function playerInput(input) {
             var item = input.split(' ')[1];
             addItem(item);
             break;
+        case 'look':
+            var thing = input.split(' ')[1];
+            examineThing(thing);
+            break;
         default:
             $('#game-text').append('<p>Invalid command!</p>');
             break;
     }
 }
 
+//Starting game
 function startGame() {
     currentRoom = 'Grass Menagerie';
     $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
     inventory = [];
 }
 
+//Changing rooms
+function changeRoom(dir) {
+    if(Rooms[currentRoom].directions[dir] !== undefined) {
+        currentRoom = Rooms[currentRoom].directions[dir];
+        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>").fadeIn('slow');
+    } else {
+        $('#game-text').append("<p>You cannot go that way!</p>");
+    }
+}
+
+//Show available commands
 function showHelp() {
     $('#game-text').append('<p>Here are the possible <b>commands</b>: ').fadeIn('slow');
     $('#game-text').append('<p><ul>');
@@ -61,6 +60,17 @@ function showHelp() {
     $('#game-text').append('</ul></p>');
 }
 
+//Adding item to inventory
+function addItem(item) {
+    if(Rooms[currentRoom].items !== undefined) {
+        inventory.push(item);
+        $('#game-text').append('<p>' + item + ' has been added to your inventory');
+    } else {
+        $('#game-text').append('<p>There is nothing to pick up!<p>');
+    }
+}
+
+//Showing what is in player's inventory
 function showInventory() {
     if(inventory.length === 0) {
         $('#game-text').append('<p>You are not carrying anything<p>').fadeIn('slow');
@@ -74,6 +84,7 @@ function showInventory() {
     $('#game-text').append('</ul></p>');
 }
 
+//Document code
 $(document).ready(function() {
     $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
 
