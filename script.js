@@ -1,5 +1,5 @@
 var currentRoom = "Grass Menagerie";
-var commands = ['go', 'inventory', 'start', 'take'];
+var commands = ['start', 'go', 'look', 'take', 'inventory', 'help'];
 var inventory = [];
 
 //Commands
@@ -24,8 +24,8 @@ function playerInput(input) {
             addItem(item);
             break;
         case 'look':
-            var thing = input.split(' ')[1];
-            examineThing(thing);
+            var obname = input.split(' ')[1];
+            lookAt(obname);
             break;
         default:
             $('#game-text').append('<p>Invalid command!</p>');
@@ -44,7 +44,7 @@ function startGame() {
 function changeRoom(dir) {
     if(Rooms[currentRoom].directions[dir] !== undefined) {
         currentRoom = Rooms[currentRoom].directions[dir];
-        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>").fadeIn('slow');
+        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
     } else {
         $('#game-text').append("<p>You cannot go that way!</p>");
     }
@@ -52,10 +52,10 @@ function changeRoom(dir) {
 
 //Show available commands
 function showHelp() {
-    $('#game-text').append('<p>Here are the possible <b>commands</b>: ').fadeIn('slow');
+    $('#game-text').append('<p>Here are the possible <b>commands</b>: ');
     $('#game-text').append('<p><ul>');
     for(var i = 0; i < commands.length; i++) {
-        $('#game-text').append('<li>' + commands[i] + '</li>').fadeIn('slow');
+        $('#game-text').append('<li>' + commands[i] + '</li>');
     }
     $('#game-text').append('</ul></p>');
 }
@@ -73,16 +73,33 @@ function addItem(item) {
 //Showing what is in player's inventory
 function showInventory() {
     if(inventory.length === 0) {
-        $('#game-text').append('<p>You are not carrying anything<p>').fadeIn('slow');
+        $('#game-text').append('<p>You are not carrying anything<p>');
         return;
     }
-    $('#game-text').append('<p>Here is your <b>inventory</b>: ').fadeIn('slow');
+    $('#game-text').append('<p>Here is your <b>inventory</b>: ');
     $('#game-text').append('<p><ul>');
     for(var i = 0; i < inventory.length; i++) {
-        $('#game-text').append('<li>' + inventory[i] + '</li>').fadeIn('slow');
+        $('#game-text').append('<li>' + inventory[i] + '</li>');
     }
     $('#game-text').append('</ul></p>');
 }
+
+//Looking at an object
+function lookAt(obname) {
+    
+    if(obname === 'room') {
+        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
+        return;
+    }
+
+    if(Rooms[currentRoom].items !== undefined) {
+        $('#game-text').append('<p>' + Rooms[currentRoom].items.desc + '<p>');
+    } else {
+        $('#game-text').append('<p>Nothing to see here!<p>');
+    }
+}
+
+//Using an object
 
 //Document code
 $(document).ready(function() {
