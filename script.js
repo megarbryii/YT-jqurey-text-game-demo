@@ -1,3 +1,4 @@
+//Global variables
 var currentRoom = "Grass Menagerie";
 var commands = ['start', 'go', 'look', 'take', 'inventory', 'help'];
 var inventory = [];
@@ -36,6 +37,7 @@ function playerInput(input) {
 //Starting game
 function startGame() {
     currentRoom = 'Grass Menagerie';
+    $('#game-text').append('<h3>' + Rooms[currentRoom].name + '</h3>');
     $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
     inventory = [];
 }
@@ -44,7 +46,8 @@ function startGame() {
 function changeRoom(dir) {
     if(Rooms[currentRoom].directions[dir] !== undefined) {
         currentRoom = Rooms[currentRoom].directions[dir];
-        $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
+        $('#game-text').append('<h3>' + Rooms[currentRoom].name + '</h3>');
+        $('#game-text').append('<p>' + Rooms[currentRoom].desc + '</p>');
     } else {
         $('#game-text').append("<p>You cannot go that way!</p>");
     }
@@ -86,6 +89,9 @@ function showInventory() {
 
 //Looking at an object
 function lookAt(obname) {
+    if(obname === '') {
+        $('#game-text').append('<p>You need to do more than just stare at the walls....<p>');
+    }
     
     if(obname === 'room') {
         $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
