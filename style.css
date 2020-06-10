@@ -1,0 +1,48 @@
+body {
+    font-family: 'VT323', monospace;
+    background-color: green;
+}
+
+#game-text {
+    color: whitesmoke;
+    height: 600px;
+    width: 100%;
+    border: 2px solid lightblue;
+    background-color: black;
+    font-size: 2rem;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+input {
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    padding-left: 15px;
+    margin-top: 25px;
+    height: 30px;
+    width: 50%;
+    border: 1px solid lightblue;
+    background-color: black;
+    color: lightblue;
+}
+
+input::placeholder {
+    font-family: 'VT323', monospace;
+    color: lightblue;
+    font-size: 1.25rem;
+    
+}
+
+b {
+    color: lightgreen;
+}
+
+p {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+h3 {
+    padding-left: 15px;
+    color: lightskyblue;
+}

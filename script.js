@@ -37,6 +37,7 @@ function playerInput(input) {
 //Starting game
 function startGame() {
     currentRoom = 'Grass Menagerie';
+    $('#game-text').empty();
     $('#game-text').append('<h3>' + Rooms[currentRoom].name + '</h3>');
     $('#game-text').append("<p>" + Rooms[currentRoom].desc + "</p>");
     inventory = [];
@@ -46,6 +47,7 @@ function startGame() {
 function changeRoom(dir) {
     if(Rooms[currentRoom].directions[dir] !== undefined) {
         currentRoom = Rooms[currentRoom].directions[dir];
+        $('#game-text').empty();
         $('#game-text').append('<h3>' + Rooms[currentRoom].name + '</h3>');
         $('#game-text').append('<p>' + Rooms[currentRoom].desc + '</p>');
     } else {
