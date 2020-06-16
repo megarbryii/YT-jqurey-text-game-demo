@@ -100,7 +100,7 @@ function lookAt(obname) {
         return;
     }
 
-    if(Rooms[currentRoom].items !== undefined) {
+    if(obname === 'item' && Rooms[currentRoom].items !== undefined) {
         $('#game-text').append('<p>' + Rooms[currentRoom].items.desc + '<p>');
     } else {
         $('#game-text').append('<p>Nothing to see here!<p>');

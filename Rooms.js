@@ -70,7 +70,7 @@ var Rooms = {
                 'east': 'Eternal Darkness'
             },
             'items': {
-                'name': 'paint',
+                'name': 'Paint',
                 'desc': 'A can of black paint.'
             }
         },
